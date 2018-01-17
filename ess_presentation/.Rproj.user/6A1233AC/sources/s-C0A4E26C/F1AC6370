@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1516225011582.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2484359669",
+    "id" : "F1AC6370",
+    "lastKnownWriteTime" : 1516230490,
+    "last_content_update" : 1516230490714,
+    "path" : "~/Downloads/gitrepo/presentations/ess_presentation/intro_slides.Rpres",
+    "project_path" : "intro_slides.Rpres",
+    "properties" : {
+        "cursorPosition" : "98,3",
+        "scrollLine" : "92"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_presentation"
+}

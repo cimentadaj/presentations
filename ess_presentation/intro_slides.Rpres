@@ -1,0 +1,136 @@
+<style>
+bold {font-weight: bold; }
+
+.section .reveal .state-background {
+    background: white;
+}
+
+.section .reveal p {
+   color: black;
+   text-align:center;
+   font-size: 1.8em;
+}
+
+.section .reveal h1,
+.section .reveal h2 {
+    color: black;
+    text-align:center;
+    width:100%;
+}
+</style>
+
+
+The ess package
+========================================================
+author: Jorge Cimentada
+date: 19/1/2018
+autosize: true
+
+<div align="center">
+<img src="ess_logo.png"; style="width:500px; height:250px">
+</div>
+
+ess package
+========================================================
+
+The philosophy of the `ess` package is very simple
+
+<div align="center">
+"Analyze your data rather than search on the web for information"
+</div>
+
+<br>
+
+It fits with the general idea of obtaining data within R from packages such as: 
+- [OECD](https://cran.r-project.org/web/packages/OECD/OECD.pdf)
+- [World Bank](https://cran.r-project.org/web/packages/wbstats/vignettes/Using_the_wbstats_package.html)
+- [Eurostat](https://cran.r-project.org/web/packages/eurostat/vignettes/eurostat_tutorial.pdf)
+
+For a very cool compendium of 'data packages' see the series of post by my good friend [Ilya Kashnitsky](https://ikashnitsky.github.io/2017/data-acquisition-one/)
+
+ess package
+========================================================
+
+It aims to fix four broad problems:
+
+- It's often difficult to keep track of all country/rounds/themes available in the ESS
+
+- It's even trickier to find which countries participated in which rounds
+
+- It's cumbersome to download/redownload data to search for variables
+
+- Avoid leaving your 'analysis phase' to search for information
+
+ess package
+========================================================
+
+Requirements:
+
+- Internet connection
+
+- Registered user at http://www.europeansocialsurvey.org/user/new
+
+ess package
+========================================================
+
+There two family of functions
+
+- `ess_` family: to download data
+
+- `show_` family: to retrieve information from the ess website
+
+In action
+========================================================
+
+```{r, eval = FALSE}
+install.packages("ess")
+library(ess)
+```
+
+```{r, echo = FALSE}
+library(ess)
+```
+
+```{r}
+show_rounds()
+```
+
+```{r, eval = FALSE}
+all_rnds <- ess_rounds(1:8, "your_registered@email.com")
+```
+
+In action
+========================================================
+
+```{r, echo = FALSE, message = FALSE, warning = FALSE, error = FALSE}
+invisible(capture.output(all_rnds <- ess_rounds(1:8, "cimentadaj@gmail.com")))
+```
+
+```{r}
+all_vars <- lapply(all_rnds, names)
+common_vars <- Reduce(function(x, y) intersect(x, y), all_vars)
+common_vars
+```
+
+```{r}
+attr(all_rnds[[3]]$pray, "label")
+attr(all_rnds[[3]]$pray, "labels")
+filtered_df <- lapply(all_rnds, function(x) x[c("name", "cntry", "pray")])
+```
+
+In action
+========================================================
+
+```{r}
+library(tidyverse)
+
+filtered_df %>%
+  reduce(rbind) %>%
+  filter(cntry %in% c("DK", "CZ", "ES"),
+         pray <= 7) %>%
+  mutate(name = str_extract(name, "^ESS[0-9]{1,}")) %>%
+  group_by(name, cntry) %>%
+  summarize(avg_pray = mean(pray, na.rm = TRUE)) %>%
+  ggplot(aes(name, avg_pray, group = cntry, colour = cntry)) +
+  geom_line()
+```
