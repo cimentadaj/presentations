@@ -1,6 +1,10 @@
 <style>
 bold {font-weight: bold; }
 
+.small-code pre code {
+  font-size: 0.2em;
+}
+
 .section .reveal .state-background {
     background: white;
 }
@@ -20,10 +24,12 @@ bold {font-weight: bold; }
 </style>
 
 
+
 The ess package
 ========================================================
 author: Jorge Cimentada
 date: 19/1/2018
+class: small-code
 autosize: true
 
 <div align="center">
@@ -36,7 +42,7 @@ ess package
 The philosophy of the `ess` package is very simple
 
 <div align="center">
-"Analyze your data rather than search on the web for information"
+"Concentrate on your analysis rather than on searching for information"
 </div>
 
 <br>
@@ -102,19 +108,26 @@ all_rnds <- ess_rounds(1:8, "your_registered@email.com")
 In action
 ========================================================
 
-```{r, echo = FALSE, message = FALSE, warning = FALSE, error = FALSE}
+```{r, echo = FALSE, message = FALSE, warning = FALSE, error = FALSE, cache = TRUE}
 invisible(capture.output(all_rnds <- ess_rounds(1:8, "cimentadaj@gmail.com")))
 ```
 
 ```{r}
 all_vars <- lapply(all_rnds, names)
+
 common_vars <- Reduce(function(x, y) intersect(x, y), all_vars)
+
 common_vars
 ```
 
+In action
+========================================================
+
 ```{r}
 attr(all_rnds[[3]]$pray, "label")
+
 attr(all_rnds[[3]]$pray, "labels")
+
 filtered_df <- lapply(all_rnds, function(x) x[c("name", "cntry", "pray")])
 ```
 
@@ -133,4 +146,44 @@ filtered_df %>%
   summarize(avg_pray = mean(pray, na.rm = TRUE)) %>%
   ggplot(aes(name, avg_pray, group = cntry, colour = cntry)) +
   geom_line()
+```
+
+In action
+========================================================
+
+```{r}
+library(eurostat)
+
+all_fertility <- eurostat::get_eurostat("demo_r_find2")
+
+reg_indicator <-
+  all_fertility %>%
+  filter(str_detect(geo, "^ES"),
+         time >= "2006-01-01",
+         time <  "2007-01-01",
+         indic_de == "AGEMOTH") %>%
+  separate(geo, c("cntry", "region"), sep = 2) %>%
+  transmute(cntry,
+            region = ifelse(region == "", NA, region),
+            avg_ageb = values) %>%
+  filter(!is.na(region))
+```
+
+
+In action
+========================================================
+
+```{r}
+region_es <-
+  all_rnds[[3]] %>%
+  transmute(cntry,
+            region = as.character(regioaes),
+            pray) %>%
+  filter(cntry == "ES") %>%
+  left_join(reg_indicator, c("cntry", "region"))
+
+region_es %>%
+  group_by(region) %>%
+  summarize(avg = mean(avg_ageb))
+
 ```

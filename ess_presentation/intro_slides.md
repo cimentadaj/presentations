@@ -1,6 +1,10 @@
 <style>
 bold {font-weight: bold; }
 
+.small-code pre code {
+  font-size: 0.2em;
+}
+
 .section .reveal .state-background {
     background: white;
 }
@@ -20,10 +24,12 @@ bold {font-weight: bold; }
 </style>
 
 
+
 The ess package
 ========================================================
 author: Jorge Cimentada
 date: 19/1/2018
+class: small-code
 autosize: true
 
 <div align="center">
@@ -36,7 +42,7 @@ ess package
 The philosophy of the `ess` package is very simple
 
 <div align="center">
-"Analyze your data rather than search on the web for information"
+"Concentrate on your analysis rather than on searching for information"
 </div>
 
 <br>
@@ -112,7 +118,9 @@ In action
 
 ```r
 all_vars <- lapply(all_rnds, names)
+
 common_vars <- Reduce(function(x, y) intersect(x, y), all_vars)
+
 common_vars
 ```
 
@@ -149,6 +157,9 @@ common_vars
 [175] "imptrad"  "impfun"   "intewde"  "inwshh"   "inwsmm"   "inwehh"  
 [181] "inwemm"   "inwtm"    "dweight"  "pweight" 
 ```
+
+In action
+========================================================
 
 
 ```r
@@ -199,3 +210,68 @@ filtered_df %>%
 ```
 
 ![plot of chunk unnamed-chunk-8](intro_slides-figure/unnamed-chunk-8-1.png)
+
+In action
+========================================================
+
+
+```r
+library(eurostat)
+
+all_fertility <- eurostat::get_eurostat("demo_r_find2")
+
+reg_indicator <-
+  all_fertility %>%
+  filter(str_detect(geo, "^ES"),
+         time >= "2006-01-01",
+         time <  "2007-01-01",
+         indic_de == "AGEMOTH") %>%
+  separate(geo, c("cntry", "region"), sep = 2) %>%
+  transmute(cntry,
+            region = ifelse(region == "", NA, region),
+            avg_ageb = values) %>%
+  filter(!is.na(region))
+```
+
+
+In action
+========================================================
+
+
+```r
+region_es <-
+  all_rnds[[3]] %>%
+  transmute(cntry,
+            region = as.character(regioaes),
+            pray) %>%
+  filter(cntry == "ES") %>%
+  left_join(reg_indicator, c("cntry", "region"))
+
+region_es %>%
+  group_by(region) %>%
+  summarize(avg = mean(avg_ageb))
+```
+
+```
+# A tibble: 18 x 2
+   region   avg
+    <chr> <dbl>
+ 1     11  31.4
+ 2     12  31.4
+ 3     13  31.2
+ 4     21  32.4
+ 5     22  31.5
+ 6     23  31.1
+ 7     24  31.4
+ 8     30  31.4
+ 9     41  31.6
+10     42  30.7
+11     43  30.9
+12     51  30.9
+13     52  30.8
+14     53  30.5
+15     61  30.4
+16     62  30.2
+17     63  29.5
+18     70  30.0
+```
