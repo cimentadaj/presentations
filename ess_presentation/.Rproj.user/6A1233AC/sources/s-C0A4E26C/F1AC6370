@@ -7,13 +7,13 @@
     "folds" : "",
     "hash" : "0",
     "id" : "F1AC6370",
-    "lastKnownWriteTime" : 1516300423,
-    "last_content_update" : 1516300423512,
+    "lastKnownWriteTime" : 1516301198,
+    "last_content_update" : 1516301198656,
     "path" : "~/Downloads/gitrepo/presentations/ess_presentation/intro_slides.Rpres",
     "project_path" : "intro_slides.Rpres",
     "properties" : {
-        "cursorPosition" : "159,0",
-        "scrollLine" : "148"
+        "cursorPosition" : "135,57",
+        "scrollLine" : "119"
     },
     "relative_order" : 1,
     "source_on_save" : false,

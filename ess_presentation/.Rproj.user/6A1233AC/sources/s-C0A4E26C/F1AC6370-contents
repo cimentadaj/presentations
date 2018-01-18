@@ -126,11 +126,17 @@ Downloading country rounds
 
 Live example
 ========================================================
-source: ess_intro.R
 
 <div align='center'>
 Let's code!
+
+<br>
+<br>
+
+<a href="http://bit.ly/2Bde6EZ">http://bit.ly/2Bde6EZ</a>
 </div>
+
+
 
 Roadmap for the ess package
 ========================================================
