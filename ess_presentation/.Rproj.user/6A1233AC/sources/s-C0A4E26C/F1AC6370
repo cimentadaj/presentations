@@ -5,15 +5,15 @@
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "2404126447",
+    "hash" : "0",
     "id" : "F1AC6370",
-    "lastKnownWriteTime" : 1516273982,
-    "last_content_update" : 1516273982145,
+    "lastKnownWriteTime" : 1516300423,
+    "last_content_update" : 1516300423512,
     "path" : "~/Downloads/gitrepo/presentations/ess_presentation/intro_slides.Rpres",
     "project_path" : "intro_slides.Rpres",
     "properties" : {
-        "cursorPosition" : "186,33",
-        "scrollLine" : "141"
+        "cursorPosition" : "159,0",
+        "scrollLine" : "148"
     },
     "relative_order" : 1,
     "source_on_save" : false,

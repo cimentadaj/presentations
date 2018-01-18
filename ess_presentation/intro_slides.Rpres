@@ -29,11 +29,12 @@ The ess package
 ========================================================
 author: Jorge Cimentada
 date: 19/1/2018
-class: small-code
 autosize: true
+width: 1700
+
 
 <div align="center">
-<img src="ess_logo.png"; style="width:500px; height:250px">
+<img src="ess_logo.png"; style="width:700px; height:250px">
 </div>
 
 ess package
@@ -52,7 +53,7 @@ It fits with the general idea of obtaining data within R from packages such as:
 - [World Bank](https://cran.r-project.org/web/packages/wbstats/vignettes/Using_the_wbstats_package.html)
 - [Eurostat](https://cran.r-project.org/web/packages/eurostat/vignettes/eurostat_tutorial.pdf)
 
-For a very cool compendium of 'data packages' see the series of post by my good friend [Ilya Kashnitsky](https://ikashnitsky.github.io/2017/data-acquisition-one/)
+For a very cool compendium of 'data packages' see the series of posts by my good friend [Ilya Kashnitsky](https://ikashnitsky.github.io/2017/data-acquisition-one/)
 
 ess package
 ========================================================
@@ -81,109 +82,86 @@ ess package
 
 There two family of functions
 
-- `ess_` family: to download data
+* `ess_*` functions download data  
+ + *Always return a list*
+ 
+<br>
 
-- `show_` family: to retrieve information from the ess website
+* `show_*` functions retrieve information from the ess website
+ + *Always return information as vectors*
 
-In action
+Downloading rounds
 ========================================================
 
-```{r, eval = FALSE}
-install.packages("ess")
-library(ess)
-```
+* `show_rounds()` returns the rounds available in the ess website
 
-```{r, echo = FALSE}
-library(ess)
-```
+<br>
 
-```{r}
-show_rounds()
-```
+* `ess_rounds()` downloads the rounds available in the ess website
+  +  `ess_rounds(4:5, "your@email.com")`
+  
+<br>
 
-```{r, eval = FALSE}
-all_rnds <- ess_rounds(1:8, "your_registered@email.com")
-```
+* `ess_all_rounds()` downloads all rounds available by default
+  +  `ess_all_rounds("your@email.com")`
 
-In action
+Downloading country rounds
 ========================================================
 
-```{r, echo = FALSE, message = FALSE, warning = FALSE, error = FALSE, cache = TRUE}
-invisible(capture.output(all_rnds <- ess_rounds(1:8, "cimentadaj@gmail.com")))
-```
+* `show_country()` returns the countries available that participated in at least one wave
 
-```{r}
-all_vars <- lapply(all_rnds, names)
+<br>
 
-common_vars <- Reduce(function(x, y) intersect(x, y), all_vars)
+* `show_country_rounds()` returns the rounds for which a country participated in
 
-common_vars
-```
+<br>
 
-In action
+* `ess_country()` downloads specific rounds for a given country
+  +  `ess_country("Spain", 1:2, "your@email.com")`
+  
+<br>
+
+* `ess_all_cntrounds()` downloads all available rounds for a given country
+  +  `ess_all_cntrounds("Spain", "your@email.com")`
+
+Live example
+========================================================
+source: ess_intro.R
+
+<div align='center'>
+Let's code!
+</div>
+
+Roadmap for the ess package
+========================================================
+* `show_themes()` and it's family
+
+* Download `ess_*` for the SDDF data
+
+* Download the data also in SPSS format
+
+* Develop a complementary package to interact with the codebook and survey analyze the ESS data
+
+* Add your requests/feedback!
+  + `devtools::install_github("cimentadaj/ess")`
+
+Future of the ess packages
 ========================================================
 
-```{r}
-attr(all_rnds[[3]]$pray, "label")
+<div align="center">
+Develop a small ecosystem of packages to analyze the ESS data easily
+</div>
 
-attr(all_rnds[[3]]$pray, "labels")
+<br>
 
-filtered_df <- lapply(all_rnds, function(x) x[c("name", "cntry", "pray")])
-```
+<div align="center">
+<img src="ess_flow.jpg"; width=1700px; height=400px>
+</div>
 
-In action
+Resources
 ========================================================
 
-```{r}
-library(tidyverse)
-
-filtered_df %>%
-  reduce(rbind) %>%
-  filter(cntry %in% c("DK", "CZ", "ES"),
-         pray <= 7) %>%
-  mutate(name = str_extract(name, "^ESS[0-9]{1,}")) %>%
-  group_by(name, cntry) %>%
-  summarize(avg_pray = mean(pray, na.rm = TRUE)) %>%
-  ggplot(aes(name, avg_pray, group = cntry, colour = cntry)) +
-  geom_line()
-```
-
-In action
-========================================================
-
-```{r}
-library(eurostat)
-
-all_fertility <- eurostat::get_eurostat("demo_r_find2")
-
-reg_indicator <-
-  all_fertility %>%
-  filter(str_detect(geo, "^ES"),
-         time >= "2006-01-01",
-         time <  "2007-01-01",
-         indic_de == "AGEMOTH") %>%
-  separate(geo, c("cntry", "region"), sep = 2) %>%
-  transmute(cntry,
-            region = ifelse(region == "", NA, region),
-            avg_ageb = values) %>%
-  filter(!is.na(region))
-```
-
-
-In action
-========================================================
-
-```{r}
-region_es <-
-  all_rnds[[3]] %>%
-  transmute(cntry,
-            region = as.character(regioaes),
-            pray) %>%
-  filter(cntry == "ES") %>%
-  left_join(reg_indicator, c("cntry", "region"))
-
-region_es %>%
-  group_by(region) %>%
-  summarize(avg = mean(avg_ageb))
-
-```
+* [Brief tutorial of the package](https://cran.r-project.org/web/packages/ess/vignettes/ess_r_stata_users.html)
+* [The development repository; this is where I will be developing new features](https://github.com/cimentadaj/ess)
+* [Bugs/issues/requests should be added here](https://github.com/cimentadaj/ess/issues)
+* Follow [#rstats](https://twitter.com/hashtag/rstats?src=hash) and [@cimentadaj](https://twitter.com/cimentadaj) on Twitter to hear about new releases
