@@ -5,12 +5,13 @@ install.packages("tidyverse")
 library(ess)
 library(tidyverse)
 
+your_registered_email <- "cimentadaj@gmail.com"
 
 # Explore which rounds are available
 show_rounds()
 
 # Choose the ones you're interested
-all_rnds <- ess_rounds(1:8, "your_registered@email.com")
+all_rnds <- ess_rounds(1:8, your_registered_email)
 
 # subset only a few variables
 filtered_df <- lapply(all_rnds, function(x) x[c("name", "cntry", "pray")])
@@ -30,8 +31,6 @@ filtered_df %>%
 # Very little effort!
 
 
-###########################################
-
 # Explore which country/rounds are available
 show_countries()
 
@@ -39,7 +38,7 @@ show_countries()
 show_country_rounds("Spain")
 
 # Then let's download it
-ess_three <- ess_country("Spain", 3, "your_registered@email.com")
+ess_three <- ess_country("Spain", 3, your_registered_email)
 
 # Let's merge it with some eurostat data
 install.packages("eurostat")
@@ -88,9 +87,9 @@ region_es %>%
 
 ### Downloading files
 
-ess_rounds(1:3, "your_registered@email.com", only_download = TRUE, output_dir = getwd())
+ess_rounds(1:3, your_registered_email, only_download = TRUE, output_dir = getwd())
 
 ess_country("Denmark", c(2, 3),
-            "your_registered@email.com",
+            your_registered_email,
             only_download = TRUE,
             output_dir = getwd())
