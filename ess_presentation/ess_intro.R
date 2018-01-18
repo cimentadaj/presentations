@@ -13,6 +13,26 @@ show_rounds()
 # Choose the ones you're interested
 all_rnds <- ess_rounds(1:8, your_registered_email)
 
+# Explore which country/rounds are available
+show_countries()
+
+# Let's work with Spain but how many rounds has it participated in?
+show_country_rounds("Spain")
+
+# Then let's download it
+ess_three <- ess_country("Spain", 3, your_registered_email)
+
+### Downloading files
+
+ess_rounds(1:3, your_registered_email, only_download = TRUE, output_dir = getwd())
+
+ess_country("Denmark", c(2, 3),
+            your_registered_email,
+            only_download = TRUE,
+            output_dir = getwd())
+
+### Analysis of rounds
+
 # subset only a few variables
 filtered_df <- lapply(all_rnds, function(x) x[c("name", "cntry", "pray")])
 
@@ -31,14 +51,7 @@ filtered_df %>%
 # Very little effort!
 
 
-# Explore which country/rounds are available
-show_countries()
-
-# Let's work with Spain but how many rounds has it participated in?
-show_country_rounds("Spain")
-
-# Then let's download it
-ess_three <- ess_country("Spain", 3, your_registered_email)
+### Analysis of countries
 
 # Let's merge it with some eurostat data
 install.packages("eurostat")
@@ -71,7 +84,7 @@ region_es <-
 
 # get the regional labels
 labels_reg <-
-  attr(all_rnds[[1]]$regioaes, "labels") %>%
+  attr(ess_three[[1]]$regioaes, "labels") %>%
   {setNames(names(.), .)}
 
 # correct for the wrong encoding
@@ -84,12 +97,3 @@ region_es %>%
   ggplot(aes(x = reorder(region, avg_age), y = avg_age)) +
   geom_col() +
   coord_flip()
-
-### Downloading files
-
-ess_rounds(1:3, your_registered_email, only_download = TRUE, output_dir = getwd())
-
-ess_country("Denmark", c(2, 3),
-            your_registered_email,
-            only_download = TRUE,
-            output_dir = getwd())
