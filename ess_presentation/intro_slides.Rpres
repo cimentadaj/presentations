@@ -131,9 +131,9 @@ Live example
 Let's code!
 
 <br>
-<br>
+<br> 
 
-<a href="http://bit.ly/2FPKYqR">http://bit.ly/2FPKYqR</a>
+<a href="ess_intro.R">Download code</a>
 </div>
 
 
