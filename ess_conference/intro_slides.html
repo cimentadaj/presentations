@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>The ess package</title>
+  <title>El paquete essurvey</title>
     
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -784,7 +784,7 @@ hljs.initHighlightingOnLoad();
   <div class="slides">
 
 <section data-state="section" data-transition="linear" data-transition-speed="default">
-<h1>The ess package</h1><p>Jorge Cimentada<br/>19&#x2F;1&#x2F;2018</p>
+<h1>El paquete essurvey</h1><p>Jorge Cimentada<br/>2018&#x2F;09&#x2F;20</p>
 
 <div class="slideContent" >
 <div align="center">
@@ -795,17 +795,17 @@ hljs.initHighlightingOnLoad();
 
 </section>
 <section data-transition="linear" data-transition-speed="default">
-<h3>ess package</h3>
+<h3>essurvey</h3>
 <div class="slideContent" >
-<p>The philosophy of the <code>ess</code> package is very simple</p>
+<p>La filosofia del paquete <code>essurvey</code> package es muy simple</p>
 
 <div align="center">
-&ldquo;Concentrate on your analysis rather than on searching for information&rdquo;
+&ldquo;Concentrate en tus analisis mas que en buscar informacion&rdquo;
 </div>
 
 <p><br></p>
 
-<p>It fits with the general idea of obtaining data within R from packages such as: </p>
+<p>Encaja con la idea general de obtener datos en R tal y como:</p>
 
 <ul>
 <li><a href="https://cran.r-project.org/web/packages/OECD/OECD.pdf">OECD</a></li>
@@ -813,125 +813,101 @@ hljs.initHighlightingOnLoad();
 <li><a href="https://cran.r-project.org/web/packages/eurostat/vignettes/eurostat_tutorial.pdf">Eurostat</a></li>
 </ul>
 
-<p>For a very cool compendium of &#39;data packages&#39; see the series of posts by my good friend <a href="https://ikashnitsky.github.io/2017/data-acquisition-one/">Ilya Kashnitsky</a></p>
+<p>Para un compendio bastante interesante paquetes de datos, vease los posts de <a href="https://ikashnitsky.github.io/2017/data-acquisition-one/">Ilya Kashnitsky</a></p>
 
 </div>
 
 </section>
 <section data-transition="linear" data-transition-speed="default">
-<h3>ess package</h3>
+<h3>essurvey</h3>
 <div class="slideContent" >
-<p>It aims to fix four broad problems:</p>
+<p>Su objetivo es solucionar cuatro problemas:</p>
 
 <ul>
-<li><p>It&#39;s often difficult to keep track of all country/rounds/themes available in the ESS</p></li>
-<li><p>It&#39;s even trickier to find which countries participated in which rounds</p></li>
-<li><p>It&#39;s cumbersome to download/redownload data to search for variables</p></li>
-<li><p>Avoid leaving your &#39;analysis phase&#39; to search for information</p></li>
+<li><p>A menudo es dificil hacer un seguimiento de todos los paises / rondas / temas disponibles en el ESS</p></li>
+<li><p>Es aun mas complicado encontrar que paises participaron en que rondas sistematicamente</p></li>
+<li><p>Es igual de complicado descargar / recargar diferentes rondas para buscar variables</p></li>
+<li><p>Te ayuda a evitar abandonar tu &#39;fase de analisis&#39; para buscar informacion</p></li>
 </ul>
 
 </div>
 
 </section>
 <section data-transition="linear" data-transition-speed="default">
-<h3>ess package</h3>
+<h3>essurvey</h3>
 <div class="slideContent" >
-<p>Requirements:</p>
+<p>El paquete fue aceptado y cumple con los estandares de rOpensci</p>
+
+<div align="center">
+<img src="data:image/png;base64,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"; width=1500px; height=300px>
+</div>
+
+<p><a href="https://ropensci.github.io/essurvey/">Y tiene su propia pagina web</a>!</p>
+
+</div>
+
+</section>
+<section data-transition="linear" data-transition-speed="default">
+<h3>essurvey</h3>
+<div class="slideContent" >
+<p>Requerimientos:</p>
 
 <ul>
-<li><p>Internet connection</p></li>
-<li><p>Registered user at <a href="http://www.europeansocialsurvey.org/user/new">http://www.europeansocialsurvey.org/user/new</a></p></li>
+<li><p>Conexion de internet</p></li>
+<li><p>Registrarse en <a href="http://www.europeansocialsurvey.org/user/new">http://www.europeansocialsurvey.org/user/new</a></p></li>
 </ul>
 
 </div>
 
 </section>
 <section data-transition="linear" data-transition-speed="default">
-<h3>ess package</h3>
+<h3>essurvey</h3>
 <div class="slideContent" >
-<p>There two family of functions</p>
+<p>Hay tres familias de funciones</p>
 
 <ul>
-<li><code>ess_*</code> functions download data<br/>
-
-<ul>
-<li><em>Always return a list</em></li>
-</ul></li>
+<li><code>import_ *</code> funciones para descargar datos en R</li>
+<li><code>download_ *</code> funciones para descargar datos en Stata y SPSS a tu ordenador</li>
+<li><code>show_ *</code> recuperan informacion del la pagina web de la ESS</li>
 </ul>
 
 <p><br></p>
 
 <ul>
-<li><code>show_*</code> functions retrieve information from the ess website
-
-<ul>
-<li><em>Always return information as vectors</em></li>
-</ul></li>
+<li><code>set_email(your@email.com)</code> hace un login directamente a la ESS</li>
+<li>Solo tienes que hacerlo <em>una vez</em> y es suficiente.</li>
+<li><code>recode_missings</code> se encarga de recodear los valores 97, 98 y 99 automaticamente.</li>
 </ul>
+
+<p><em>IMPORTANTE: tener tu correo registrado en la pagina de la ESS</em></p>
 
 </div>
 
 </section>
 <section data-transition="linear" data-transition-speed="default">
-<h3>Downloading rounds</h3>
-<div class="slideContent" >
-<ul>
-<li><code>show_rounds()</code> returns the rounds available in the ess website</li>
-</ul>
-
-<p><br></p>
-
-<ul>
-<li><code>ess_rounds()</code> downloads the rounds available in the ess website
-
-<ul>
-<li> <code>ess_rounds(4:5, &quot;your@email.com&quot;)</code></li>
-</ul></li>
-</ul>
-
-<p><br></p>
-
-<ul>
-<li><code>ess_all_rounds()</code> downloads all rounds available by default
-
-<ul>
-<li> <code>ess_all_rounds(&quot;your@email.com&quot;)</code></li>
-</ul></li>
-</ul>
-
-</div>
-
-</section>
-<section data-transition="linear" data-transition-speed="default">
-<h3>Downloading country rounds</h3>
+<h3>Descargar rondas</h3>
 <div class="slideContent" >
 <ul>
-<li><code>show_country()</code> returns the countries available that participated in at least one wave</li>
+<li><code>show_rounds()</code> retorna las rondas disponibles en la ESS</li>
 </ul>
 
 <p><br></p>
 
 <ul>
-<li><code>show_country_rounds()</code> returns the rounds for which a country participated in</li>
-</ul>
-
-<p><br></p>
+<li><code>import_rounds()</code> descarga las rondas directamente a R
 
 <ul>
-<li><code>ess_country()</code> downloads specific rounds for a given country
-
-<ul>
-<li> <code>ess_country(&quot;Spain&quot;, 1:2, &quot;your@email.com&quot;)</code></li>
+<li> <code>import_rounds(4:5)</code></li>
 </ul></li>
 </ul>
 
 <p><br></p>
 
 <ul>
-<li><code>ess_all_cntrounds()</code> downloads all available rounds for a given country
+<li><code>import_all_rounds()</code> Descarga todas las rondas disponibles directamente a R
 
 <ul>
-<li> <code>ess_all_cntrounds(&quot;Spain&quot;, &quot;your@email.com&quot;)</code></li>
+<li> <code>import_all_rounds()</code></li>
 </ul></li>
 </ul>
 
@@ -939,27 +915,61 @@ hljs.initHighlightingOnLoad();
 
 </section>
 <section data-transition="linear" data-transition-speed="default">
-<h3>Live example</h3>
+<h3>Descargar rondas de paises</h3>
+<div class="slideContent" >
+<ul>
+<li><code>show_country ()</code> devuelve los paises disponibles que participaron en al menos una ronda</li>
+</ul>
+
+<p><br></p>
+
+<ul>
+<li><code>show_country_rounds ()</code> devuelve las rondas en las que un pais participo</li>
+</ul>
+
+<p><br></p>
+
+<ul>
+<li><code>import_country ()</code> descarga rondas especificas para un pais
+
+<ul>
+<li><code>import_country(&quot;Spain&quot;, 1:2)</code></li>
+</ul></li>
+</ul>
+
+<p><br></p>
+
+<ul>
+<li><code>import_all_cntrounds()</code> descarga todas las rondas disponibles para un pais
+
+<ul>
+<li><code>import_all_cntrounds(&quot;Spain&quot;)</code></li>
+</ul></li>
+</ul>
+
+</div>
+
+</section>
+<section data-transition="linear" data-transition-speed="default">
+<h3>Ejemplo en vivo</h3>
 <div class="slideContent" >
 <div align='center'>
-Let&rsquo;s code!
+Vamos a codear
 </div>
 
 </div>
 
 </section>
 <section data-transition="linear" data-transition-speed="default">
-<h3>Roadmap for the ess package</h3>
+<h3>Hoja de ruta para los paquetes ESS en R</h3>
 <div class="slideContent" >
 <ul>
-<li><p><code>show_themes()</code> and it&#39;s family</p></li>
-<li><p>Download <code>ess_*</code> for the SDDF data</p></li>
-<li><p>Download the data also in SPSS format</p></li>
-<li><p>Develop a complementary package to interact with the codebook and survey analyze the ESS data</p></li>
-<li><p>Add your requests/feedback!</p>
+<li><p>Descargar <code>import_*</code> los datos de los pesos (SDDF)</p></li>
+<li><p>Desarollar dos paquetes complementarios para interactuar con el codebook y analizar los datos de la ESS</p></li>
+<li><p>Prueba las ultimas versiones y pedi features especiales!</p>
 
 <ul>
-<li><code>devtools::install_github(&quot;cimentadaj/ess&quot;)</code></li>
+<li><code>devtools::install_github(&quot;ropensci/essurvey&quot;)</code></li>
 </ul></li>
 </ul>
 
@@ -967,10 +977,10 @@ Let&rsquo;s code!
 
 </section>
 <section data-transition="linear" data-transition-speed="default">
-<h3>Future of the ess packages</h3>
+<h3>Futuro de los paquetes de la ESS</h3>
 <div class="slideContent" >
 <div align="center">
-Develop a small ecosystem of packages to analyze the ESS data easily
+Desarrollar un ecosistema de paquetes para analizar los datos de ESS en R
 </div>
 
 <p><br></p>
@@ -983,13 +993,32 @@ Develop a small ecosystem of packages to analyze the ESS data easily
 
 </section>
 <section data-transition="linear" data-transition-speed="default">
-<h3>Resources</h3>
+<h3>Aplicaciones actuales de essurvey</h3>
+<div class="slideContent" >
+<p>Descarga los datos de la ESS con etiquetas en castellano: <a href="https://essurvey.shinyapps.io/ess_castellano/">https://essurvey.shinyapps.io/ess_castellano/</a></p>
+
+<p>Ideas de otras aplicaciones:</p>
+
+<ul>
+<li>Analizar datos interactivamente con una interfaz
+
+<ul>
+<li>Ensenar graficas para visualizar patrones</li>
+<li>Esto puede servir mucho a periodistas buscando responder preguntas</li>
+</ul></li>
+</ul>
+
+</div>
+
+</section>
+<section data-transition="linear" data-transition-speed="default">
+<h3>Recursos</h3>
 <div class="slideContent" >
 <ul>
-<li><a href="https://cran.r-project.org/web/packages/ess/vignettes/ess_r_stata_users.html">Brief tutorial of the package</a></li>
-<li><a href="https://github.com/cimentadaj/ess">The development repository; this is where I will be developing new features</a></li>
-<li><a href="https://github.com/cimentadaj/ess/issues">Bugs/issues/requests should be added here</a></li>
-<li>Follow <a href="https://twitter.com/hashtag/rstats?src=hash">#rstats</a> and <a href="https://twitter.com/cimentadaj">@cimentadaj</a> on Twitter to hear about new releases</li>
+<li><a href="https://cran.r-project.org/web/packages/essurvey/vignettes/intro_ess.html">Breve tutorial del paquete</a></li>
+<li><a href="https://github.com/ropensci/essurvey">El repositorio de desarollo; aqui es donde vamos anadir nuevos cambios</a></li>
+<li><a href="https://github.com/ropensci/essurvey/issues">Bugs/features pueden ser anadidos aqui</a></li>
+<li>Seguir <a href="https://twitter.com/hashtag/rstats?src=hash">#rstats</a> y <a href="https://twitter.com/cimentadaj">@cimentadaj</a> en Twitter para saber de nuevos releases</li>
 </ul>
 
 </div>
