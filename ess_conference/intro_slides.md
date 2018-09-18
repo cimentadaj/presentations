@@ -25,10 +25,10 @@ bold {font-weight: bold; }
 
 
 
-The ess package
+El paquete essurvey
 ========================================================
 author: Jorge Cimentada
-date: 19/1/2018
+date: 2018/09/20
 autosize: true
 width: 1700
 
@@ -37,119 +37,130 @@ width: 1700
 <img src="ess_logo.png"; style="width:700px; height:250px">
 </div>
 
-ess package
+essurvey
 ========================================================
 
-The philosophy of the `ess` package is very simple
+La filosofia del paquete `essurvey` package es muy simple
 
 <div align="center">
-"Concentrate on your analysis rather than on searching for information"
+"Concentrate en tus analisis mas que en buscar informacion"
 </div>
 
 <br>
 
-It fits with the general idea of obtaining data within R from packages such as: 
+Encaja con la idea general de obtener datos en R tal y como:
 - [OECD](https://cran.r-project.org/web/packages/OECD/OECD.pdf)
 - [World Bank](https://cran.r-project.org/web/packages/wbstats/vignettes/Using_the_wbstats_package.html)
 - [Eurostat](https://cran.r-project.org/web/packages/eurostat/vignettes/eurostat_tutorial.pdf)
 
-For a very cool compendium of 'data packages' see the series of posts by my good friend [Ilya Kashnitsky](https://ikashnitsky.github.io/2017/data-acquisition-one/)
+Para un compendio bastante interesante paquetes de datos, vease los posts de [Ilya Kashnitsky](https://ikashnitsky.github.io/2017/data-acquisition-one/)
 
-ess package
+essurvey
 ========================================================
 
-It aims to fix four broad problems:
+Su objetivo es solucionar cuatro problemas:
 
-- It's often difficult to keep track of all country/rounds/themes available in the ESS
+- A menudo es dificil hacer un seguimiento de todos los paises / rondas / temas disponibles en el ESS
 
-- It's even trickier to find which countries participated in which rounds
+- Es aun mas complicado encontrar que paises participaron en que rondas sistematicamente
 
-- It's cumbersome to download/redownload data to search for variables
+- Es igual de complicado descargar / recargar diferentes rondas para buscar variables
 
-- Avoid leaving your 'analysis phase' to search for information
+- Te ayuda a evitar abandonar tu 'fase de analisis' para buscar informacion
 
-ess package
+essurvey
 ========================================================
 
-Requirements:
+El paquete fue aceptado y cumple con los estandares de rOpensci
 
-- Internet connection
+<div align="center">
+<img src="ess_ropensci.png"; width=1500px; height=300px>
+</div>
 
-- Registered user at http://www.europeansocialsurvey.org/user/new
+[Y tiene su propia pagina web](https://ropensci.github.io/essurvey/)!
 
-ess package
+essurvey
 ========================================================
 
-There two family of functions
+Requerimientos:
 
-* `ess_*` functions download data  
- + *Always return a list*
- 
+- Conexion de internet
+
+- Registrarse en http://www.europeansocialsurvey.org/user/new
+
+essurvey
+========================================================
+
+Hay dos familias de funciones
+
+* `import_ *` funciones para descargar datos en R
+* `download_ *` funciones para descargar datos en Stata y SPSS a tu ordenador
+* `show_ *` recuperan informacion del la pagina web de la ESS
+
 <br>
 
-* `show_*` functions retrieve information from the ess website
- + *Always return information as vectors*
+* `set_email(your@email.com)` hace un login directamente a la ESS
+* Solo se hace **una vez** y es suficiente.
 
-Downloading rounds
+*IMPORTANTE: tener tu correo registrado en la pagina de la ESS*
+
+Descargar rondas
 ========================================================
 
-* `show_rounds()` returns the rounds available in the ess website
+* `show_rounds()` retorna las rondas disponibles en la ESS
 
 <br>
 
-* `ess_rounds()` downloads the rounds available in the ess website
-  +  `ess_rounds(4:5, "your@email.com")`
+* `import_rounds()` descarga las rondas directamente a R
+  +  `import_rounds(4:5)`
   
 <br>
 
-* `ess_all_rounds()` downloads all rounds available by default
-  +  `ess_all_rounds("your@email.com")`
+* `import_all_rounds()` Descarga todas las rondas disponibles directamente a R
+  +  `import_all_rounds()`
 
-Downloading country rounds
+Descargar rondas de paises
 ========================================================
 
-* `show_country()` returns the countries available that participated in at least one wave
+* `show_country ()` devuelve los paises disponibles que participaron en al menos una ronda
 
 <br>
 
-* `show_country_rounds()` returns the rounds for which a country participated in
+* `show_country_rounds ()` devuelve las rondas en las que un pais participo
 
 <br>
 
-* `ess_country()` downloads specific rounds for a given country
-  +  `ess_country("Spain", 1:2, "your@email.com")`
+* `import_country ()` descarga rondas especificas para un país
+  + `import_country("Spain", 1:2)`
   
 <br>
 
-* `ess_all_cntrounds()` downloads all available rounds for a given country
-  +  `ess_all_cntrounds("Spain", "your@email.com")`
+* `import_all_cntrounds()` descarga todas las rondas disponibles para un país
+  + `import_all_cntrounds("Spain")`
 
-Live example
+Ejemplo en vivo
 ========================================================
 source: ess_intro.R
 
 <div align='center'>
-Let's code!
+Vamos a codear
 </div>
 
-Roadmap for the ess package
+Hoja de ruta para los paquetes ESS en R
 ========================================================
-* `show_themes()` and it's family
 
-* Download `ess_*` for the SDDF data
+* Descargar `import_*` los datos de los pesos (SDDF)
 
-* Download the data also in SPSS format
+* Desarollar dos paquetes complementarios para interactuar con el codebook y analizar los datos de la ESS
 
-* Develop a complementary package to interact with the codebook and survey analyze the ESS data
+* Prueba las ultimas versiones y pedi features especiales!
+  + `devtools::install_github("ropensci/ess")`
 
-* Add your requests/feedback!
-  + `devtools::install_github("cimentadaj/ess")`
-
-Future of the ess packages
+Futuro de los paquetes de la ESS
 ========================================================
 
 <div align="center">
-Develop a small ecosystem of packages to analyze the ESS data easily
+Desarrollar un ecosistema de paquetes para analizar los datos de ESS en R
 </div>
 
 <br>
@@ -158,10 +169,10 @@ Develop a small ecosystem of packages to analyze the ESS data easily
 <img src="ess_flow.jpg"; width=1700px; height=400px>
 </div>
 
-Resources
+Recursos
 ========================================================
 
-* [Brief tutorial of the package](https://cran.r-project.org/web/packages/ess/vignettes/ess_r_stata_users.html)
-* [The development repository; this is where I will be developing new features](https://github.com/cimentadaj/ess)
-* [Bugs/issues/requests should be added here](https://github.com/cimentadaj/ess/issues)
-* Follow [#rstats](https://twitter.com/hashtag/rstats?src=hash) and [@cimentadaj](https://twitter.com/cimentadaj) on Twitter to hear about new releases
+* [Breve tutorial del paquete](https://cran.r-project.org/web/packages/essurvey/vignettes/intro_ess.html)
+* [El repositorio de desarollo; aqui es donde vamos añadir nuevos cambios](https://github.com/ropensci/essurvey)
+* [Bugs/features Pueden ser añadidos aqui](https://github.com/ropensci/essurvey/issues)
+* Seguir [#rstats](https://twitter.com/hashtag/rstats?src=hash) y [@cimentadaj](https://twitter.com/cimentadaj) en Twitter para saber de nuevos releases
