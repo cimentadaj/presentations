@@ -145,11 +145,10 @@ Descargar rondas de paises
 
 Ejemplo en vivo
 ========================================================
-source: ess_intro.R
 
-<div align='center'>
-Vamos a codear
-</div>
+<br>
+
+[Vamos a codear](https://bit.ly/2POBDns)
 
 Hoja de ruta para los paquetes ESS en R
 ========================================================
