@@ -158,7 +158,7 @@ Hoja de ruta para los paquetes ESS en R
 
 * Desarollar dos paquetes complementarios para interactuar con el codebook y analizar los datos de la ESS
 
-* Prueba las ultimas versiones y pedi features especiales!
+* Prueba las ultimas versiones y pide features especiales!
   + `devtools::install_github("ropensci/essurvey")`
 
 Futuro de los paquetes de la ESS
