@@ -91,7 +91,7 @@ Requerimientos:
 essurvey
 ========================================================
 
-Hay dos familias de funciones
+Hay tres familias de funciones
 
 * `import_ *` funciones para descargar datos en R
 * `download_ *` funciones para descargar datos en Stata y SPSS a tu ordenador
@@ -100,7 +100,8 @@ Hay dos familias de funciones
 <br>
 
 * `set_email(your@email.com)` hace un login directamente a la ESS
-* Solo se hace **una vez** y es suficiente.
+* Solo tienes que hacerlo *una vez* y es suficiente.
+* `recode_missings` se encarga de recodear los valores 97, 98 y 99 automaticamente.
 
 *IMPORTANTE: tener tu correo registrado en la pagina de la ESS*
 
@@ -130,12 +131,12 @@ Descargar rondas de paises
 
 <br>
 
-* `import_country ()` descarga rondas especificas para un país
+* `import_country ()` descarga rondas especificas para un pais
   + `import_country("Spain", 1:2)`
   
 <br>
 
-* `import_all_cntrounds()` descarga todas las rondas disponibles para un país
+* `import_all_cntrounds()` descarga todas las rondas disponibles para un pais
   + `import_all_cntrounds("Spain")`
 
 Ejemplo en vivo
@@ -154,7 +155,7 @@ Hoja de ruta para los paquetes ESS en R
 * Desarollar dos paquetes complementarios para interactuar con el codebook y analizar los datos de la ESS
 
 * Prueba las ultimas versiones y pedi features especiales!
-  + `devtools::install_github("ropensci/ess")`
+  + `devtools::install_github("ropensci/essurvey")`
 
 Futuro de los paquetes de la ESS
 ========================================================
@@ -169,10 +170,20 @@ Desarrollar un ecosistema de paquetes para analizar los datos de ESS en R
 <img src="ess_flow.jpg"; width=1700px; height=400px>
 </div>
 
+Aplicaciones actuales de essurvey
+========================================================
+
+Descarga los datos de la ESS con etiquetas en castellano: https://essurvey.shinyapps.io/ess_castellano/
+
+Ideas de otras aplicaciones:
+* Analizar datos interactivamente con una interfaz
+  * Ensenar graficas para visualizar patrones
+  * Esto puede servir mucho a periodistas buscando responder preguntas
+
 Recursos
 ========================================================
 
 * [Breve tutorial del paquete](https://cran.r-project.org/web/packages/essurvey/vignettes/intro_ess.html)
 * [El repositorio de desarollo; aqui es donde vamos añadir nuevos cambios](https://github.com/ropensci/essurvey)
-* [Bugs/features Pueden ser añadidos aqui](https://github.com/ropensci/essurvey/issues)
+* [Bugs/features pueden ser añadidos aqui](https://github.com/ropensci/essurvey/issues)
 * Seguir [#rstats](https://twitter.com/hashtag/rstats?src=hash) y [@cimentadaj](https://twitter.com/cimentadaj) en Twitter para saber de nuevos releases

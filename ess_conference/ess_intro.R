@@ -1,5 +1,5 @@
-# install.packages("essurvey")
 
+install.packages(c("essurvey", "ggplot2", "dplyr", "purrr"))
 
 library(essurvey)
 library(ggplot2)
@@ -21,14 +21,13 @@ show_country_rounds("Spain")
 spn <- import_country("Spain", rounds = 2)
 
 ## ESS round 2
-unique(spn$name)
+unique(spn$essround)
 
 ## Confirm it's Spain
 unique(spn$cntry)
 
 ## Let's explore whether Spaniards trust their legal system
 attr(spn$trstlgl, "label")
-
 
 ## Are there any categories that represent missing values?
 attr(spn$trstlgl, "labels")
@@ -48,6 +47,14 @@ ggplot(spn, aes(trstlgl)) +
   labs(x = "Trust in the legal systemin Spain") +
   theme_minimal()
 
+## Only 7 rounds of code to visualize that!
+spn <- import_country("Spain", rounds = 2)
+spn <- recode_missings(spn)
+spn$trstlgl <- factor(spn$trstlgl, ordered = TRUE)
+ggplot(spn, aes(trstlgl)) +
+  geom_bar() +
+  labs(x = "Trust in the legal systemin Spain") +
+  theme_minimal()
 
 ## What if we wanted to explore this overtime? That is, we want to look
 ## at the percentage of people in each category for all available rounds
@@ -85,6 +92,9 @@ all_rounds_merged %>%
 ## 2, 4 and 8? That's a bit more difficult because we need to check which
 ## countries where in round 2, then in round 4 etc.. and then check
 ## which ones are common.
+
+## For example: https://www.europeansocialsurvey.org/data/country_index.html
+
 rounds <- c(2, 4, 8)
 ## essurvey has got you covered!
 
@@ -126,7 +136,6 @@ all_countries %>%
 ## What if we want to download the complete rounds?
 
 round_five <- import_rounds(5)
-
 
 round_five
 
