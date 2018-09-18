@@ -57,7 +57,7 @@ Encaja con la idea general de obtener datos en R tal y como:
 - [World Bank](https://cran.r-project.org/web/packages/wbstats/vignettes/Using_the_wbstats_package.html)
 - [Eurostat](https://cran.r-project.org/web/packages/eurostat/vignettes/eurostat_tutorial.pdf)
 
-Para un compendio bastante interesante paquetes de datos, vease los posts de [Ilya Kashnitsky](https://ikashnitsky.github.io/2017/data-acquisition-one/)
+Para un compendio bastante interesante de paquetes de datos, vease los posts de [Ilya Kashnitsky](https://ikashnitsky.github.io/2017/data-acquisition-one/)
 
 essurvey
 ========================================================
