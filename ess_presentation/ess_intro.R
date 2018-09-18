@@ -1,16 +1,37 @@
-# Download the package from CRAN
+# Download the packages from CRAN
 install.packages("ess")
 install.packages("tidyverse")
 
 library(ess)
 library(tidyverse)
 
+# replace this email with your registerd ess email
+# if you haven't registered go to: 
+# http://www.europeansocialsurvey.org/user/new
+your_registered_email <- "your@email.com"
 
 # Explore which rounds are available
 show_rounds()
 
 # Choose the ones you're interested
-all_rnds <- ess_rounds(1:8, "your_registered@email.com")
+all_rnds <- ess_rounds(1:8, your_registered_email)
+
+### Downloading files
+
+# With these functions you can download the files to your computer
+# Currently only Stata files (19/1/2018) but next releases
+# will allow Stata, SPSS and SAS.
+
+# For rounds
+# ess_rounds(1:3, your_registered_email, only_download = TRUE, output_dir = getwd())
+
+# For countries
+# ess_country("Denmark", c(2, 3),
+#             your_registered_email,
+#             only_download = TRUE,
+#             output_dir = getwd())
+
+### Analysis of rounds
 
 # subset only a few variables
 filtered_df <- lapply(all_rnds, function(x) x[c("name", "cntry", "pray")])
@@ -25,10 +46,15 @@ filtered_df %>%
   group_by(name, cntry) %>%
   summarize(avg_pray = mean(pray, na.rm = TRUE)) %>%
   ggplot(aes(name, avg_pray, group = cntry, colour = cntry)) +
-  geom_line()
+  geom_line() +
+  labs(title = "Avg agreement to pray outside of church for all ESS rounds",
+       subtitle = "Lower scores mean more agreement") +
+  ylab("Average agreement to praying outside of church") +
+  xlab("ESS rounds")
 
 # Very little effort!
 
+### Analysis of countries
 
 # Explore which country/rounds are available
 show_countries()
@@ -37,7 +63,7 @@ show_countries()
 show_country_rounds("Spain")
 
 # Then let's download it
-ess_three <- ess_country("Spain", 3, "your_registered@email.com")
+ess_three <- ess_country("Spain", 3, your_registered_email)
 
 # Let's merge it with some eurostat data
 install.packages("eurostat")
@@ -70,7 +96,7 @@ region_es <-
 
 # get the regional labels
 labels_reg <-
-  attr(all_rnds[[1]]$regioaes, "labels") %>%
+  attr(ess_three[[1]]$regioaes, "labels") %>%
   {setNames(names(.), .)}
 
 # correct for the wrong encoding
@@ -82,13 +108,7 @@ region_es %>%
   summarize(avg_age = first(avg_ageb)) %>% # get the avg age of first birth
   ggplot(aes(x = reorder(region, avg_age), y = avg_age)) +
   geom_col() +
-  coord_flip()
-
-### Downloading files
-
-ess_rounds(1:3, "your_registered@email.com", only_download = TRUE, output_dir = getwd())
-
-ess_country("Denmark", c(2, 3),
-            "your_registered@email.com",
-            only_download = TRUE,
-            output_dir = getwd())
+  coord_flip() +
+  ylab("Average age of first birth of the mother") +
+  xlab("Spanish regions") +
+  labs(title = "Average age of first birth of mothers for Spanish regions")
